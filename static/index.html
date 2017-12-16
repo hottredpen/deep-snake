@@ -90,10 +90,11 @@
     const red = palette[3];
 
 
+    // 玩家
     (function you() {
-        let controls = new deepsnake.Controls();
-        let game = new deepsnake.Game();
-        let grid = new deepsnake.Grid("#yours").color(blue, green);
+        let controls = new deepsnake.Controls(); // 玩家键盘控制方法
+        let game = new deepsnake.Game();         // 游戏法则
+        let grid = new deepsnake.Grid("#yours").color(blue, green); // 玩家游戏角色的颜色
 
         function loop() {
             let decision = controls.value;
