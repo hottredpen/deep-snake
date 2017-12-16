@@ -22,13 +22,14 @@ function Brain(neurons = 40) {
     this.loss = 100;
     this.trainer = new convnetjs.SGDTrainer(this.net, options);
 }
-
+// 奖励
 function reward(state, action) {
     let x = new convnetjs.Vol(state);
     let stats = this.trainer.train(x, action);
     this.loss = stats.loss;
 }
 
+// 决定
 function decide(state) {
     let x = new convnetjs.Vol(state);
     let result = this.net.forward(x);

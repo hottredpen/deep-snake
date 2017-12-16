@@ -49,9 +49,10 @@ function state2() {
     return [f.x, f.y, s.x, s.y];
 }
 
+// 游戏做出举动
 function tick(input, draw = () => {}) {
-    let direction = new Point(input[0], input[1]);
-        let cells = this.universe.tick(direction);
+    let direction = new Point(input[0], input[1]);// 玩家，AI的抉择（方向）
+    let cells = this.universe.tick(direction);  // 此处包含了蛇的法则，和 其他法则
     draw(cells);
 }
 

@@ -96,9 +96,12 @@
         let game = new deepsnake.Game();         // 游戏法则
         let grid = new deepsnake.Grid("#yours").color(blue, green); // 玩家游戏角色的颜色
 
+        // 循环
         function loop() {
-            let decision = controls.value;
+            let decision = controls.value; // 玩家决定（方向）
+            // 游戏做出举动
             game.tick(decision, function draw(cells) {
+                // 格子进行描绘
                 grid.draw(cells);
             });
             setTimeout(loop, interval);
@@ -107,12 +110,13 @@
         loop();
     })();
 
+    // 已经训练好的（模拟的理想状态）
     (function simulator() {
         let game = new deepsnake.Game();
         let grid = new deepsnake.Grid("#simulation").color(orange, green);
 
         function loop() {
-            let decision = game.hint();
+            let decision = game.hint(); // 理想抉择（人工算法）
             game.tick(decision, function draw(cells) {
                 grid.draw(cells);
             });
@@ -122,14 +126,16 @@
         loop();
     })();
 
+    // 新大脑
     let brain = new deepsnake.Brain();
 
+    // 训练人
     (function trainer(brain) {
         let game = new deepsnake.Game();
 
         function loop() {
-            let decision = game.hint();
-            brain.reward(game.state2(), decision);
+            let decision = game.hint(); // 理想抉择（人工算法）
+            brain.reward(game.state2(), decision); // 奖励
             game.tick(decision);
             setTimeout(loop, 0);
         }

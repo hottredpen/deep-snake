@@ -17,6 +17,7 @@ function Universe(snk = new Snake(), fd = new Food()) {
     this.food = fd;
 }
 
+// 法则 举动
 function tick(direction) {
     this.snake.move(direction);
     let head = this.snake.head()
