@@ -60,6 +60,7 @@ function score() {
     return this.universe.snake.score;
 }
 
+// 理想抉择（人工算法）
 function hint() {
     var direction = DIRECTIONS.getFromTo(this.universe.snake.head(), this.universe.food.head());
     return [direction.x, direction.y];

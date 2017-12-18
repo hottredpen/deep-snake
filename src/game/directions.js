@@ -1,7 +1,12 @@
 'use strict';
 import {
   Point
-} from "./point.js";
+} from "./point.js"; // 点的概念
+
+/**
+ * 指令（上下左右）二维数据点阵
+ */
+
 
 export const DIRECTIONS = {
     UP: new Point(0, -1),
@@ -9,11 +14,18 @@ export const DIRECTIONS = {
     RIGHT: new Point(1, 0),
     LEFT: new Point(-1, 0),
 
-    getAll: function() { return [this.UP, this.RIGHT, this.DOWN, this.LEFT]},
+    // 获取当前指令
+    getAll: function() { 
+        console.log("DIRECTIONS.getAll");
+        console.log([this.UP, this.RIGHT, this.DOWN, this.LEFT]);
+        return [this.UP, this.RIGHT, this.DOWN, this.LEFT]
+    },
 
     getRandom: function () {
         let all = this.getAll();
         let rndIndex = Math.floor((Math.random() * all.length));
+        console.log("DIRECTIONS.getRandom");
+        console.log(all[rndIndex]);
         return all[rndIndex];
     },
 
@@ -21,6 +33,8 @@ export const DIRECTIONS = {
         let dx = point2.x - point1.x;
         let dy = point2.y - point1.y;
         let direction = new Point(Math.sign(dx), Math.sign(dy));
+        console.log("DIRECTIONS.getFromTo");
+        console.log(direction);
         return direction;
     }
 };

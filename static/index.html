@@ -148,7 +148,7 @@
         let grid = new deepsnake.Grid("#ai").color(red, green);
 
         function loop() {
-            let decision = brain.decide(game.state2());
+            let decision = brain.decide(game.state2()); // 大脑的决定（convnetjs）,state2(当前蛇头和食物的坐标状态)
             game.tick(decision, function draw(cells) {
                 grid.draw(cells);
             });
@@ -158,7 +158,7 @@
         loop();
     })(brain);
 
-
+    // 统计
     (function stats() {
         let chart = new deepsnake.Chart("#stats", "loose", [240, 240], 50, 1);
         let color = d3.scaleLinear().domain([0.15, 0.5]).interpolate(d3.interpolateHcl).range([green, orange, red]);
