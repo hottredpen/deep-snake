@@ -14,13 +14,14 @@ export const DIRECTIONS = {
     RIGHT: new Point(1, 0),
     LEFT: new Point(-1, 0),
 
-    // 获取当前指令
+    // 随机指令的内部方法
     getAll: function() { 
         console.log("DIRECTIONS.getAll");
         console.log([this.UP, this.RIGHT, this.DOWN, this.LEFT]);
         return [this.UP, this.RIGHT, this.DOWN, this.LEFT]
     },
 
+    // 随机的指令
     getRandom: function () {
         let all = this.getAll();
         let rndIndex = Math.floor((Math.random() * all.length));
@@ -29,6 +30,7 @@ export const DIRECTIONS = {
         return all[rndIndex];
     },
 
+    // 有目标的指令
     getFromTo: function (point1, point2) {
         let dx = point2.x - point1.x;
         let dy = point2.y - point1.y;
