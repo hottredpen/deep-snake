@@ -23,10 +23,10 @@ import {
 export {Game};
 
 function Game(size = new Point(20, 20), universe =  new Universe()) {
-    this.size = size;
+    this.size = size; // 单个点的大小
     Point.prototype.size = size;
     this.universe = universe;
-    this.directions = DIRECTIONS.getAll();
+    this.directions = DIRECTIONS.getAll(); // 可用的方向
     this.dir2id = {};
     this.directions.forEach((point,index)=>this.dir2id[point.getHash()]=index);
 }

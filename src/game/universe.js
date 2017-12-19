@@ -12,6 +12,11 @@ export {
     Universe
 };
 
+/**
+ * 宇宙
+ * @param {Snake} snk [description]
+ * @param {Food}  fd  [description]
+ */
 function Universe(snk = new Snake(), fd = new Food()) {
     this.snake = snk;
     this.food = fd;
@@ -30,8 +35,14 @@ function tick(direction) {
     return this.getCells();
 }
 
-
+/**
+ * 获取整个宇宙场景的所有对象的celss
+ * @return {[type]} [description]
+ */
 function getCells() {
+
+    // concat 拼接数组
+    // reduce() 方法接收一个函数作为累加器
     return [this.snake.getCells(), this.food.getCells()].reduce((acc, cur) => acc.concat(cur), [])
 }
 

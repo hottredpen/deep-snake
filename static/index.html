@@ -37,6 +37,11 @@
     <div id="stats" class="box left">
         <span>learning PROGRESS.</span>
     </div>
+
+    <div id="pk_yours" class="box left">
+        <span>pk</span>
+    </div>
+
 </div>
 
 <div class="text">
@@ -80,9 +85,13 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://cs.stanford.edu/people/karpathy/convnetjs/build/convnet-min.js"></script>
 <script src="js/deepsnake.js"></script>
+
+
+<script src="js/pk_universe_theorem.js"></script>
+
 <script>
 
-    const interval = 100;
+    const interval = 1000;
     const palette = d3.schemeCategory10;
     const blue = palette[0];
     const orange = palette[1];
@@ -94,7 +103,11 @@
     (function you() {
         let controls = new deepsnake.Controls(); // 玩家键盘控制方法
         let game = new deepsnake.Game();         // 游戏法则
-        let grid = new deepsnake.Grid("#yours").color(blue, green); // 玩家游戏角色的颜色
+        // let grid = new deepsnake.Grid("#yours").color(blue, green); // 玩家游戏角色的颜色
+
+
+        var grid = pk_universe_theorem.createObj();
+        grid.init({'ui_element':"#yours",'snake_color':blue,'food_color':green});
 
         // 循环
         function loop() {
@@ -172,6 +185,32 @@
         loop();
     })();
 
+
+
+    // pk——your
+    (function pk_you() {
+        let controls = new deepsnake.Controls(); // 玩家键盘控制方法
+        let game = new deepsnake.Game();         // 游戏法则
+        //let grid = new deepsnake.Grid("#pk_yours").color(blue, green); // 玩家游戏角色的颜色
+
+
+        var grid = pk_universe_theorem.createObj();
+        grid.init({'ui_element':"#pk_yours",'snake_color':blue,'food_color':green});
+
+
+        // 循环
+        function loop() {
+            let decision = controls.value; // 玩家决定（方向）
+            // 游戏做出举动
+            game.tick(decision, function draw(cells) {
+                // 格子进行描绘
+                grid.draw(cells);
+            });
+            setTimeout(loop, interval);
+        }
+
+        loop();
+    })();
 
 </script>
 
